@@ -1,6 +1,10 @@
 import sqlite3
+from EjemplosClases import Cliente
 
-def IngresarDatos(nombre, nombre_imagen):
+def IngresarDatos(Cliente):
+
+    nombre = Cliente._nombre
+    nombre_imagen = Cliente._nombre_imagen
 
     try:
         #Conexion a la base de datos
@@ -34,7 +38,7 @@ def RecuperarDatos():
     cursor = conexion.cursor()
 
     #Ejecutar consulta en la base de datos
-    cursor.execute("SELECT * FROM Clientes")
+    cursor.execute("SELECT * FROM Clientes ORDER BY nombre")
 
     #Obtener los resultados de la consulta 
     registro_cliente = cursor.fetchall()
@@ -43,7 +47,4 @@ def RecuperarDatos():
     conexion.close()
 
     return registro_cliente
-
-
-print(RecuperarDatos())
 
